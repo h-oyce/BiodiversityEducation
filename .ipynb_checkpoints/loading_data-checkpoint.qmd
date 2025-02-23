@@ -1,0 +1,17 @@
+---
+title: "Untitled"
+format: html
+---
+
+```{r}
+library(dplyr)
+bio_data <- read.table("data/occurrence.txt",sep="\t",header=TRUE, fill = TRUE, quote = "", stringsAsFactors = FALSE)
+```
+
+```{r}
+mass_data <- bio_data |>
+  filter(stateProvince == "Massachusetts") |>
+  filter(!is.na(decimalLatitude) & !is.na(decimalLongitude))
+
+write.csv(mass_data, "mass_data.csv")
+```
